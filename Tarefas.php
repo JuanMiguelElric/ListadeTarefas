@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'banco.php';
 
 if (isset($_GET['nome']) && $_GET['nome'] != '') {
     $tarefa = array();
@@ -28,5 +29,27 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
     $_SESSION['listaTarefas'][] = $tarefa;
 }
 
-$listaTarefas = isset($_SESSION['listaTarefas']) ? $_SESSION['listaTarefas'] : array();
+$listaTarefas = buscar_tarefas($conexao);
+
+
+function buscar_tarefas($conexao)
+{   
+    //SELECIONA TODAS COLUNAS E RETORNA NO MEU PHP 
+    $sqlBusca = 'SELECT * FROM tarefas';
+    $resultado = mysqli_query($conexao, $sqlBusca);
+
+    if (!$resultado) {
+        die('Erro na consulta: ' . mysqli_error($conexao));
+    }
+
+    $tarefas = array();
+    while ($tarefa = mysqli_fetch_assoc($resultado)) {
+        $tarefas[] = $tarefa;
+    }
+
+    return $tarefas;
+}
+function gravat_tarefa(){
+    
+}
 ?>
