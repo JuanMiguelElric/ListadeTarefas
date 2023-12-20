@@ -5,36 +5,21 @@ include 'banco.php';
 if (isset($_GET['nome']) && $_GET['nome'] != '') {
     $tarefa = array();
     $tarefa['nome'] = $_GET['nome'];
+    $tarefa['descricao'] = isset($_GET['descricao']) ? $_GET['descricao'] : '';
+    $tarefa['prazo'] = isset($_GET['prazo']) ? $_GET['prazo'] : '';
 
-    if (isset($_GET['descricao'])) {
-        $tarefa['descricao'] = $_GET['descricao'];
-    } else {
-        $tarefa['descricao'] = '';
-    }
+    // Verifica se 'prioridade' foi definida em $_GET
+    $tarefa['prioridade'] = isset($_GET['prioridade']) ? $_GET['prioridade'] : '';
 
-    if (isset($_GET['prazo'])) {
-        $tarefa['prazo'] = $_GET['prazo'];
-    } else {
-        $tarefa['prazo'] = '';
-    }
-
-    $tarefa['prioridade'] = $_GET['prioridade'];
-
-    if (isset($_GET['concluida'])) {
-        $tarefa['concluida'] = $_GET['concluida'];
-    } else {
-        $tarefa['concluida'] = '';
-    }
+    $tarefa['concluida'] = isset($_GET['concluida']) ? $_GET['concluida'] : '';
 
     $_SESSION['listaTarefas'][] = $tarefa;
 }
 
 $listaTarefas = buscar_tarefas($conexao);
 
-
 function buscar_tarefas($conexao)
-{   
-    //SELECIONA TODAS COLUNAS E RETORNA NO MEU PHP 
+{
     $sqlBusca = 'SELECT * FROM tarefas';
     $resultado = mysqli_query($conexao, $sqlBusca);
 
@@ -49,7 +34,18 @@ function buscar_tarefas($conexao)
 
     return $tarefas;
 }
-function gravat_tarefa(){
-    
+gravar_tarefa($conexao,$tarefa);
+
+function gravar_tarefa($conexao, $tarefa){
+    $sqlGravar ="
+        INSERT INTO tarefas
+        (nome, descricao, prioridade)
+        VALUES(
+            '{$tarefa['nome']}',
+            '{$tarefa['descricao']}',
+            '{$tarefa['prioridade']}'
+        )
+    ";
+    mysqli_query($conexao, $sqlGravar);
 }
 ?>

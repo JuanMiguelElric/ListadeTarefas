@@ -97,9 +97,9 @@
             <fieldset>
                 <legend>Prioridade:</legend>
                 <label for="">
-                    <input type="radio" name="prioridade " value="baixa" checked id=""> Baixa
-                    <input type="radio" name="prioridade " value="baixa" id=""> Media
-                    <input type="radio" name="prioridade " value="baixa" id=""> Alta
+                    <input type="radio" name="prioridade " value="1" checked id=""> Baixa
+                    <input type="radio" name="prioridade " value="2" id=""> Media
+                    <input type="radio" name="prioridade " value="3" id=""> Alta
                 </label>
             </fieldset>
             <input type="submit" value="cadastrar">
