@@ -14,3 +14,15 @@ VALUES
 ('Estudar PHP', 'Continuar meus estudos de PHP e MySQL', 1)
 selecionar uns campos 
 SELECT * FROM tarefas
+
+Ajudantes?
+É bem comum encontrar em aplicações PHP, ou de outras linguagens,
+arquivos, pacotes, módulos etc., com o nome de helpers, que significa
+exatamente ajudantes.
+Em geral, estes arquivos contêm pequenos trechos de código para auxiliar em tarefas recorrentes, como no nosso caso de exibir
+ o tipo de prioridade ou a formatação de datas, que veremos ainda neste capítulo.
+Você também pode agrupar os ajudantes para determinadas tarefas em arquivos separados. Alguns exemplos seriam ajudantes
+ para desenhar tabelas em um arquivo chamado
+ajudantes_tabelas.php ou um para criar formulários em um
+arquivo ajudantes_formularios.php. Tudo vai depender das suas
+necessidades e organização do código.

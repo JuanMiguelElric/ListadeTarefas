@@ -1,5 +1,3 @@
-php
-Copy code
 <?php
     $bdServidor = '127.0.0.1';
     $bdUsuario = 'BREID';
