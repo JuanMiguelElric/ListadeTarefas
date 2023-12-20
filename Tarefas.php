@@ -7,7 +7,8 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
     $tarefa = array();
     $tarefa['nome'] = $_GET['nome'];
     $tarefa['descricao'] = isset($_GET['descricao']) ? $_GET['descricao'] : '';
-    $tarefa['prazo'] = isset($_GET['prazo']) ? $_GET['prazo'] : '';
+    $tarefa['prazo'] = isset($_GET['prazo']) ? traduz_data_para_banco($_GET['prazo']) : '';
+
 
     // Verifica se 'prioridade' foi definida em $_GET
     $tarefa['prioridade'] = isset($_GET['prioridade']) ? $_GET['prioridade'] : '';
@@ -40,11 +41,12 @@ gravar_tarefa($conexao,$tarefa);
 function gravar_tarefa($conexao, $tarefa){
     $sqlGravar ="
         INSERT INTO tarefas
-        (nome, descricao, prioridade)
+        (nome, descricao, prioridade,prazo)
         VALUES(
             '{$tarefa['nome']}',
             '{$tarefa['descricao']}',
-            '{$tarefa['prioridade']}'
+            '{$tarefa['prioridade']}',
+            '{$tarefa['prazo']}'
         )
     ";
     mysqli_query($conexao, $sqlGravar);

@@ -1,8 +1,14 @@
 <?php
-$textooriginal= "frodo;sam;prippinn;eu";
-$hobbits= explode(";",$textooriginal);
-foreach ($hobbits as $hobbit) {
-    echo $hobbit . "<br />";
+function traduz_data_para_Banco($data)
+{
+    if($data ='' OR $data == '0000-00-00'){
+        return '';
+
+    }
+    $dados = explode("-", $data);
+    $data_exibir ='{$dados[2]}-{$dados[1]}-{$dados[0]}';
+    return $data_exibir;
+
 }
  function traduz_prioridade($codigo)
  {
