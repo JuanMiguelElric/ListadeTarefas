@@ -26,3 +26,9 @@ Você também pode agrupar os ajudantes para determinadas tarefas em arquivos s
 ajudantes_tabelas.php ou um para criar formulários em um
 arquivo ajudantes_formularios.php. Tudo vai depender das suas
 necessidades e organização do código.
+
+protocolo http é um protocolo de requisição entre o cliente e o servidor
+
+$abidu = 'pagamento'
+$ bd
+ if(mysqli_errno_request)

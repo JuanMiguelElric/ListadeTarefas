@@ -78,47 +78,11 @@
     </style>
 </head>
 <body> 
-    <?php include 'Tarefas.php'?>
+    <?php include 'Tarefas.php';?>
     <h1>Gerenciador de Tarefas</h1>
-    <form action="" method="get">
-        <fieldset>
-            <legend>Nova Tarefa</legend>
-            <label for="">
-                <input type="text" name="nome" id="">
-            </label>
-            <label for="">
-                Descrição
-                <textarea name="descricao" id="" cols="30" rows="10"></textarea>
-            </label>
-            <label for="">
-                prazo
-                <input type="text" name="prazo" id="">
-            </label>
-            <fieldset>
-                <legend>Prioridade:</legend>
-                <label for="">
-                    <input type="radio" name="prioridade " value="1" checked id=""> Baixa
-                    <input type="radio" name="prioridade " value="2" id=""> Media
-                    <input type="radio" name="prioridade " value="3" id=""> Alta
-                </label>
-            </fieldset>
-            <input type="submit" value="cadastrar">
-        </fieldset>
-    </form>
-    <table>
-        <tr>
-            <th>Tarefas</th>
-        </tr>
-        <?php foreach($listaTarefas as $tarefa):?>
-            <tr>
-                <td><?php echo $tarefa['nome'];?></td>
-                <td><?php echo $tarefa['descricao'];?></td>
-                <td><?php echo $tarefa['prazo'];?></td>
-                <td>
-                    <?php echo traduz_prioridade($tarefa['prioridade']); ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+    <?php include 'formulario.php'?>
+    <?php if ($exibir_tabela) : ?>
+        <?php include 'tabela.php' ?>
+    <?php endif; ?>
 </body>
 </html>
