@@ -28,6 +28,8 @@
             $tarefa['concluida']=0;
         }
         $editar_tarefa($conexao,$tarefa);
+        header('Location: template.php');
+        die();
     }
     $tarefa = buscar_tarefa($conexao, $_GET['id']);
     include 'template.php';

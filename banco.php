@@ -20,7 +20,7 @@
         $resultado = mysqli_query($conexao,$sqlBusca);
         return mysqli_fetch_assoc($resultado);
     }
-    
+
     function buscar_tarefas($conexao)
     {
     $sqlBusca = 'SELECT * FROM tarefas';
@@ -35,18 +35,38 @@
     return $tarefas;
     }
     function gravar_tarefa($conexao, $tarefa){
-        $sqlGravar ="
-            INSERT INTO tarefas
-            (nome, descricao, prioridade,prazo)
-            VALUES(
-                '{$tarefa['nome']}',
-                '{$tarefa['descricao']}',
-                '{$tarefa['prioridade']}',
-                '{$tarefa['prazo']}'
-            )
+        // Verifica se a tarefa já existe
+        $sqlVerificar = "
+            SELECT id FROM tarefas
+            WHERE nome = '{$tarefa['nome']}'
+            AND descricao = '{$tarefa['descricao']}'
+            AND prioridade = '{$tarefa['prioridade']}'
+            AND prazo = '{$tarefa['prazo']}'
         ";
-        mysqli_query($conexao, $sqlGravar);
+    
+        $resultado = mysqli_query($conexao, $sqlVerificar);
+    
+        if (mysqli_num_rows($resultado) > 0) {
+
+
+        } else {
+            // Tarefa não existe, realiza a inserção
+            $sqlGravar = "
+                INSERT INTO tarefas
+                (nome, descricao, prioridade, prazo)
+                VALUES(
+                    '{$tarefa['nome']}',
+                    '{$tarefa['descricao']}',
+                    '{$tarefa['prioridade']}',
+                    '{$tarefa['prazo']}'
+                )
+            ";
+    
+            mysqli_query($conexao, $sqlGravar);
+
+        }
     }
+    
     function editar_tarefa($conexao, $tarefa)
     {
         $sqlEditar = "

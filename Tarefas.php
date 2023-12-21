@@ -4,7 +4,7 @@ include 'banco.php';
 include 'ajudantes.php';
 $exibir_tabela = true;
 $tarefa = array();
-$tarefa = array();
+
 
 if (isset($_GET['nome'])) {
     $tarefa['nome'] = $_GET['nome'];
