@@ -1,14 +1,36 @@
 <?php
-function traduz_data_para_Banco($data)
+function traduz_data_para_banco($data)
 {
-    if($data ='' OR $data == '0000-00-00'){
-        return '';
-
+    if ($data == "") {
+        return "";
     }
-    $dados = explode("-", $data);
-    $data_exibir ='{$dados[2]}-{$dados[1]}-{$dados[0]}';
-    return $data_exibir;
 
+    $dados = explode("/", $data);
+
+    if (count($dados) != 3) {
+        return $data;
+    }
+
+    $data_mysql = "{$dados[2]}-{$dados[1]}-{$dados[0]}";
+
+    return $data_mysql;
+}
+
+function traduz_data_para_exibir($data)
+{
+    if ($data == "" OR $data == "0000-00-00") {
+        return "";
+    }
+
+    $dados = explode("-", $data);
+
+    if (count($dados) != 3) {
+        return $data;
+    }
+
+    $data_exibir = "{$dados[2]}/{$dados[1]}/{$dados[0]}";
+
+    return $data_exibir;
 }
  function traduz_prioridade($codigo)
  {

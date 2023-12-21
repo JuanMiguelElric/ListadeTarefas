@@ -4,7 +4,7 @@
         <legend>Nova Tarefa</legend>
         <fieldset>
             <label for="">
-                <input type="hidden" name="" value=<?php $tarefa['id']?>>
+                <input type="hidden" name="" value=<?php isset($tarefa['id'])?>>
             </label>
         </fieldset>
         <label for="">
@@ -23,7 +23,7 @@
         <fieldset>
             <legend>Prioridade:</legend>
             <label for="">
-                <input type="radio" name="prioridade " value="1"
+                <input type="radio" name="prioridade " value="1" 
                 <?php echo ($tarefa['prioridade']==1) ? 'checked': '';?> checked id=""> Baixa
                 <input type="radio" name="prioridade " value="2" <?php echo ($tarefa['prioridade'] ==2 ) ?'checked':''; ?> id=""> Media
                 <input type="radio" name="prioridade " value="3" <?php echo($tarefa['prioridade'] == 3) ? 'checked':'';?> id=""> Alta
@@ -34,8 +34,7 @@
         ? 'checked'
         : '';
         ?> />
-        <input type="submit" value="
-            <?php echo ($tarefa['id'] > 0) ? 'Atualizar' : 'Cadastrar'; ?>
-        " />
+         <input type="submit" value="<?php echo isset($tarefa['id']) && $tarefa['id'] > 0 ? 'Atualizar' : 'Cadastrar'; ?> ">
+
     </fieldset>
 </form>
