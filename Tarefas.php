@@ -6,35 +6,34 @@ $exibir_tabela = true;
 $tarefa = array();
 
 
-if (isset($_GET['nome'])) {
-    $tarefa['nome'] = $_GET['nome'];
-} else {
-    $tarefa['nome'] = ''; // Defina um valor padrão ou deixe vazio, dependendo do seu caso.
-}
+if (isset($_POST['nome'])&& $_POST['nome'] != '') {
+    $tarefa['nome'] = $_POST['nome'];
 
-$tarefa['descricao'] = isset($_GET['descricao']) ? $_GET['descricao'] : '';
-$tarefa['prazo'] = isset($_GET['prazo']) ? traduz_data_para_banco($_GET['prazo']) : '';
-$tarefa['prioridade'] = isset($_GET['prioridade']) ? $_GET['prioridade'] : '';
-$tarefa['concluida'] = isset($_GET['concluida']) ? $_GET['concluida'] : '';
-
-$_SESSION['listaTarefas'][] = $tarefa;
-gravar_tarefa($conexao, $tarefa);
-
-if (isset($_GET['nome']) && $_GET['nome'] != '') {
-    $tarefa = array();
-    $tarefa['nome'] = $_GET['nome'];
-    $tarefa['descricao'] = isset($_GET['descricao']) ? $_GET['descricao'] : '';
-    $tarefa['prazo'] = isset($_GET['prazo']) ? traduz_data_para_banco($_GET['prazo']) : '';
-
-
-    // Verifica se 'prioridade' foi definida em $_GET
-    $tarefa['prioridade'] = isset($_GET['prioridade']) ? $_GET['prioridade'] : '';
-
-    $tarefa['concluida'] = isset($_GET['concluida']) ? $_GET['concluida'] : '';
-
+    $tarefa['descricao'] = isset($_POST['descricao']) ? $_POST['descricao'] : '';
+    $tarefa['prazo'] = isset($_POST['prazo']) ? traduz_data_para_banco($_POST['prazo']) : '';
+    $tarefa['prioridade'] = isset($_POST['prioridade']) ? $_POST['prioridade'] : '';
+    $tarefa['concluida'] = isset($_POST['concluida']) ? $_POST['concluida'] : '';
+    
     $_SESSION['listaTarefas'][] = $tarefa;
+    gravar_tarefa($conexao, $tarefa);
+    
+    if (isset($_POST['nome']) && $_POST['nome'] != '') {
+        $tarefa = array();
+        $tarefa['nome'] = $_POST['nome'];
+        $tarefa['descricao'] = isset($_POST['descricao']) ? $_POST['descricao'] : '';
+        $tarefa['prazo'] = isset($_POST['prazo']) ? traduz_data_para_banco($_POST['prazo']) : '';
+    
+    
+        // Verifica se 'prioridade' foi definida em $_POST
+        $tarefa['prioridade'] = isset($_POST['prioridade']) ? $_POST['prioridade'] : '';
+    
+        $tarefa['concluida'] = isset($_POST['concluida']) ? $_POST['concluida'] : '';
+    
+        $_SESSION['listaTarefas'][] = $tarefa;
+    }
+    
+    
 }
-
 $listaTarefas = buscar_tarefas($conexao);
 
 
@@ -49,4 +48,5 @@ $tarefas = array(
     'prioridade'=>''
 
 );
+
 ?>

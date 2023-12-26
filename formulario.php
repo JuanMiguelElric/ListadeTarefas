@@ -1,5 +1,5 @@
 
-<form action="" method="get">
+<form action="" method="POST">
     <fieldset>
         <legend>Nova Tarefa</legend>
         <fieldset>
@@ -8,17 +8,17 @@
             </label>
         </fieldset>
         <label for="">
-            <input type="text" name="nome" value="<?php $tarefa['nome']; ?>">
+            <input type="text" name="nome" value="<?php isset($tarefa['nome']) ?>">
         </label>
         <label for="">
             Descrição
             <textarea name="descricao" id="" cols="30"  rows="10">
-                <?php $tarefa['descricao'];?>
+                <?php isset($tarefa['descricao']);?>
             </textarea>
         </label>
         <label for="">
             prazo
-            <input type="text" name="prazo" value="<?php echo traduz_data_para_Banco($tarefa['prazo'])?>" id="">
+            <input type="text" name="prazo" value="<?php echo traduz_data_para_Banco(isset($tarefa['prazo']))?>" id="">
         </label>
         <fieldset>
             <legend>Prioridade:</legend>

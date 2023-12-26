@@ -17,6 +17,11 @@
                 <td>
                     <a href="editar.php id=<?php echo $tarefa['id'];?>"></a>
                 </td>
+                <td>
+                    <a href="remover.php" id=<?php echo $tarefa['id'];?>>
+                    Remover
+                    </a>
+                </td>
             </tr>
         <?php endforeach; ?>
 </table>
